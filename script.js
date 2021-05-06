@@ -18,7 +18,7 @@ const Storage = {
     get(){
         return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
     },
-    set(transaction) {
+    set(transactions) {
         localStorage.setItem("dev.finances:transactions",JSON.stringify(transactions))
     }
 }
@@ -113,7 +113,7 @@ const DOM = {
 
 const Utils = {
     formatAmount(value) {
-        value = value * 100 
+        value = value * 100
         return Math.round(value)
     },
 
@@ -202,9 +202,8 @@ const Form = {
 
 const App = {
     init() {
-        Transaction.all.forEach((transaction, index) => {
-            DOM.addTransaction(transaction, index)
-        })
+       
+        Transaction.all.forEach(DOM.addTransaction)
 
         DOM.updateBalance()
 
